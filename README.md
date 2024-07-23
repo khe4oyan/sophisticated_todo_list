@@ -1,1 +1,5 @@
-# sophisticated_todo_list
+# Sophisticated Todo List
+
+## How to use
+## Project structure
+## Demo
