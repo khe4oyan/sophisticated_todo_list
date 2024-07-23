@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path={ROUTES.HOME_PAGE} element={<HomePage />}/>
+        <Route path={ROUTES.HOME_PAGE} element={<HomePage />} />
         <Route path={ROUTES.NOT_FOUND_PAGE} element={<NotFoundPage />}/>
       </Routes>
     </div>
