@@ -1,35 +1,33 @@
 // libs
-import { useSelector } from "react-redux";
-import { useState } from "react";
 import styled from "styled-components";
 import Title from "antd/es/typography/Title";
 import { Flex } from "antd";
-import { FilterOutlined } from "@ant-design/icons";
-import { Button, Dropdown, message, Space } from "antd";
+import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+// routes
+import ROUTES from "../../routes/routes";
 
 const Header = styled.div`
   background-color: #06213d;
   padding: 10px 0;
 `;
 
+const Content = styled.div`
+  height: calc(100dvh - 58px);
+  overflow: auto;
+`;
+
 export default function HomePage() {
-  const [filterValue, setFilterValue] = useState(-1);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleMenuClick = (e) => {
-    const key = e.key;
-    if (key == 5) {
-      message.info("Filter reseted");
-      setFilterValue(-1);
-    } else {
-      message.info("Filter changed");
+  useEffect(() => {
+    if (location.pathname === ROUTES.HOME_PAGE) {
+      navigate(ROUTES.TODOS_PAGE);
     }
-  };
-
-  const { filters } = useSelector((s) => s.filterSlice);
-  const dropDownMenuProps = {
-    items: filters,
-    onClick: handleMenuClick,
-  };
+  }, [location.pathname]);
 
   return (
     <>
@@ -43,14 +41,10 @@ export default function HomePage() {
           </Title>
         </Flex>
       </Header>
-      <Dropdown menu={dropDownMenuProps}>
-        <Button>
-          <Space>
-            Filters
-            <FilterOutlined />
-          </Space>
-        </Button>
-      </Dropdown>
+      
+      <Content>
+        <Outlet />
+      </Content>
     </>
   );
 }

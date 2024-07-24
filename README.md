@@ -6,13 +6,6 @@
 
 ## Stages
 
-### stage 1
-- Todo Element:
-text: string
-status: boolean
-category: string
-priority: string
-
 ### stage 2
 - Add new todo
 - Delete todo
@@ -20,7 +13,7 @@ priority: string
 
 ### stage 3
 - Add Drag and Drop
-- Add Filters
++ Add Filters
 
 ### stage 4
 - responsive for all devices

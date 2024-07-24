@@ -6,62 +6,30 @@ const filterSlice = createSlice({
   initialState: {
     filters: [
       {
-        label: "Finished",
-        key: "1",
+        label: "Done",
+        value: true,
       },
       {
-        label: "Unfinished",
-        key: "2",
+        label: "Undone",
+        value: false,
       },
       {
-        label: "Priority",
-        key: "3",
-        children: [
-          {
-            key: "3-1",
-            label: "Low",
-          },
-          {
-            key: "3-2",
-            label: "Medium",
-          },
-          {
-            key: "3-3",
-            label: "Hight",
-          },
-        ],
+        label: "Low",
+        value: "Low",
       },
       {
-        label: "Category",
-        key: "4",
-        children: [
-          {
-            key: "4-1",
-            label: "Design",
-          },
-          {
-            key: "4-2",
-            label: "Programming",
-          },
-        ],
+        label: "Meduim",
+        value: "Meduim",
       },
       {
-        label: "Reset",
-        key: "5",
-        danger: true,
+        label: "High",
+        value: "High",
       },
     ],
   },
 
-  reducers: {
-    addNewFilter() {
-      // TODO
-    },
-    delFilter() {
-      // TODO: delete only user's filters
-    },
-  }
+  // reducers: {}
 });
 
 export default filterSlice.reducer;
-export const {  } = filterSlice.actions;
+// export const {  } = filterSlice.actions;
