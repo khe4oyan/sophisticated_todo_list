@@ -7,24 +7,24 @@ const todoSlice = createSlice({
     allTodo: [
       {
         id: 0,
-        text: "Todo 1",
+        text: "Check test task",
         statusIsDone: false,
-        category: "Design",
-        priority: "Low",
-      },
-      {
-        id: 1,
-        text: "Todo 2",
-        statusIsDone: false,
-        category: "Design",
+        category: "Programming",
         priority: "High",
       },
       {
+        id: 1,
+        text: "Try to add new todo",
+        statusIsDone: false,
+        category: "Programming",
+        priority: "Medium",
+      },
+      {
         id: 2,
-        text: "Todo 3",
+        text: "Open test project",
         statusIsDone: true,
         category: "Programming",
-        priority: "Meduim",
+        priority: "Low",
       },
     ],
   },
@@ -35,4 +35,4 @@ const todoSlice = createSlice({
 });
 
 export default todoSlice.reducer;
-export const {  } = todoSlice.actions;
+// export const {  } = todoSlice.actions;
