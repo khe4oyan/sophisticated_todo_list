@@ -1,5 +1,5 @@
 // libs
-import { Flex } from "antd";
+import { Flex, Empty } from "antd";
 
 // components
 import TodoCard from "../TodoCard/TodoCard";
@@ -26,9 +26,15 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
 
   return (
     <Flex wrap vertical style={{ margin: "10px 0" }} gap="10px">
-      {filteredTodos.map((todo, i) => (
-        <TodoCard key={i} todoData={todo} ind={i} />
-      ))}
+      {
+        filteredTodos.length < 1 ? (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        ) : (
+          filteredTodos.map((todo, i) => (
+            <TodoCard key={i} todoData={todo} ind={i} />
+          ))
+        )
+      }
     </Flex>
   );
 }

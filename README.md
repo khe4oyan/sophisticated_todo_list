@@ -8,7 +8,7 @@
 
 ### stage 2
 + Add new todo
-- Delete todo
++ Delete todo
 - Edit todo
   - in single page
   - in todo card

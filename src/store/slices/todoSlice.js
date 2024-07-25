@@ -46,7 +46,15 @@ const todoSlice = createSlice({
       state.allTodo.unshift(todoData);
     },
     removeTodo(state, action) {
-      // TODO
+      const removeTodoInd = action.payload;
+      const newTodos = [];
+
+      for (let i = 0; i < state.allTodo.length; ++i) {
+        if (i === removeTodoInd) { continue; }
+        newTodos.push(state.allTodo[i]);
+      }
+
+      state.allTodo = newTodos;
     },
     setTodoStatus(state, action) {
       // TODO

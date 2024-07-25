@@ -1,6 +1,11 @@
 // libs
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Typography, Dropdown } from "antd";
+
+// slices
+import { removeTodo } from "../../store/slices/todoSlice";
+
 const { Title } = Typography;
 
 const Root = styled.div`
@@ -57,14 +62,6 @@ const Category = styled(TagsStyles)`
   color: black;
 `;
 
-const onMenuClick = () => {
-  console.log("click");
-};
-
-const onMenuItemClick = (e) => {
-  console.log("click", e);
-};
-
 const items = [
   {
     key: "0",
@@ -82,6 +79,8 @@ const items = [
 ];
 
 export default function TodoCard({ todoData, ind }) {
+  const dispatch = useDispatch();
+
   const {
     // id,
     text,
@@ -89,6 +88,25 @@ export default function TodoCard({ todoData, ind }) {
     category,
     priority,
   } = todoData;
+
+  const onMenuClick = () => {
+    console.log("click");
+  };
+  
+  const onMenuItemClick = (e) => {
+    const key = +e.key;
+    switch(key) {
+      case 0:
+        break; 
+      case 1:
+        break; 
+      case 2:
+        dispatch(removeTodo(ind));
+        break; 
+      default: 
+        console.error("Undefined menu item click");
+    }
+  };
 
   const lowecasePriority = priority.toLowerCase();
 
