@@ -25,15 +25,18 @@ const Root = styled.div`
   }
 `;
 
-const Priority = styled.div`
+const TagsStyles = styled.div`
   position: absolute;
   right: 2px;
-  bottom: 26px;
   padding: 1px 8px;
+  border-radius: 10px;
+`;
+
+const Priority = styled(TagsStyles)`
   background-color: var(--color);
   border: 1px solid #0003;
   color: #fffe;
-  border-radius: 10px;
+  bottom: 26px;
 
   &.high {
     --color: #e73939;
@@ -46,15 +49,12 @@ const Priority = styled.div`
   }
 `;
 
-const Category = styled.div`
+const Category = styled(TagsStyles)`
   position: absolute;
-  right: 2px;
   bottom: 2px;
-  padding: 1px 8px;
   background-color: white;
   border: 1px solid #0003;
   color: black;
-  border-radius: 10px;
 `;
 
 const onMenuClick = () => {

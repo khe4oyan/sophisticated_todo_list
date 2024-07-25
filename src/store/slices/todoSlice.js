@@ -1,8 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const createTodo = (text, priority, category) => {
+  return {
+    id: new Date().getTime(),
+    text,
+    statusIsDone: false,
+    category,
+    priority,
+  }
+}
+
 const todoSlice = createSlice({
   name: "todoSlice",
-  
+
   initialState: {
     allTodo: [
       {
@@ -30,9 +40,23 @@ const todoSlice = createSlice({
   },
 
   reducers: {
-    // TODO
+    addTodo(state, action) {
+      const { todoText, priority, category } = action.payload;
+      const todoData = createTodo(todoText, priority, category);
+      state.allTodo.unshift(todoData);
+    },
+    removeTodo(state, action) {
+      // TODO
+    },
+    setTodoStatus(state, action) {
+      // TODO
+    },
+    changeTodo(state, action) {
+      // TODO
+    },
   },
 });
 
 export default todoSlice.reducer;
-// export const {  } = todoSlice.actions;
+export const { addTodo, removeTodo, setTodoStatus, changeTodo } =
+  todoSlice.actions;

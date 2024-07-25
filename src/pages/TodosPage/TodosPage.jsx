@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 // components
 import ShowTodosWithFilters from '../../components/ShowTodosWithFilters';
+import AddTodoModal from "../../components/AddTodoModal/AddTodoModal";
 
 const Root = styled.div`
   padding: 10px;
@@ -15,6 +16,7 @@ const Root = styled.div`
 
 export default function TodoPage() {
   const { filters } = useSelector((s) => s.filterSlice);
+  const { categories } = useSelector(s => s.categorySlice);
   const { allTodo } = useSelector(s => s.todoSlice);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
@@ -28,7 +30,7 @@ export default function TodoPage() {
         style={{
           width: "100%",
         }}
-        direction="vertical"
+        direction="horizontal"
       >
         <Select
           mode="multiple"
@@ -39,10 +41,10 @@ export default function TodoPage() {
           }}
           placeholder="Filters"
           onChange={onFilterChange}
-          options={filters}
+          options={[...filters, ...categories]}
         />
+        <AddTodoModal />
       </Space>
-
       <ShowTodosWithFilters 
         selectedFilters={selectedFilters}
         todos={allTodo}

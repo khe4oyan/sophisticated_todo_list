@@ -1,10 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initCategories = () => {
+  // default categories
+  const categories = [
+    { value: "Programming" },
+    { value: "Design" },
+    { value: "Other" },
+  ];
+
+  // TODO: add user custom categories
+
+  return categories;
+};
+
 const categorySlice = createSlice({
   name: "categorySlice",
 
   initialState: {
-    categories: [],
+    categories: initCategories(),
   },
 
   reducers: {

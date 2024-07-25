@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import PRIORITIES from "../../data/priority";
 
 const filterSlice = createSlice({
   name: "filterSlice",
@@ -13,18 +14,7 @@ const filterSlice = createSlice({
         label: "Undone",
         value: false,
       },
-      {
-        label: "Low",
-        value: "Low",
-      },
-      {
-        label: "Medium",
-        value: "Medium",
-      },
-      {
-        label: "High",
-        value: "High",
-      },
+      ...PRIORITIES,
     ],
   },
 

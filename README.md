@@ -7,7 +7,7 @@
 ## Stages
 
 ### stage 2
-- Add new todo
++ Add new todo
 - Delete todo
 - Edit todo
   - in single page
