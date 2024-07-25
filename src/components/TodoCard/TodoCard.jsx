@@ -90,9 +90,11 @@ export default function TodoCard({ todoData, ind }) {
     priority,
   } = todoData;
 
+  const lowecasePriority = priority.toLowerCase();
+
   return (
-    <Root className={`${priority.toLowerCase()}`}>
-      <Title level={3}>{text}</Title>
+    <Root className={statusIsDone || lowecasePriority}>
+      <Title level={3} style={statusIsDone && {textDecorationLine: "line-through", color: "gray"}}>{text}</Title>
       <Dropdown.Button
         menu={{
           items,
@@ -103,7 +105,7 @@ export default function TodoCard({ todoData, ind }) {
         {statusIsDone ? "Undone" : "Done"}
       </Dropdown.Button>
 
-      <Priority className={priority.toLowerCase()}>{priority.toLowerCase()}</Priority>
+      <Priority className={lowecasePriority}>{lowecasePriority}</Priority>
       <Category>{category.toLowerCase()}</Category>
     </Root>
   );
