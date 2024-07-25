@@ -25,7 +25,7 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
   }
 
   return (
-    <Flex wrap style={{ margin: "10px 0" }} gap="10px">
+    <Flex wrap vertical style={{ margin: "10px 0" }} gap="10px">
       {filteredTodos.map((todo, i) => (
         <TodoCard key={i} todoData={todo} ind={i} />
       ))}
