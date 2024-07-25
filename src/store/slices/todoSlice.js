@@ -7,8 +7,8 @@ const createTodo = (text, priority, category) => {
     statusIsDone: false,
     category,
     priority,
-  }
-}
+  };
+};
 
 const todoSlice = createSlice({
   name: "todoSlice",
@@ -58,5 +58,9 @@ const todoSlice = createSlice({
 });
 
 export default todoSlice.reducer;
-export const { addTodo, removeTodo, setTodoStatus, changeTodo } =
-  todoSlice.actions;
+export const { 
+  addTodo, 
+  removeTodo, 
+  setTodoStatus, 
+  changeTodo 
+} = todoSlice.actions;
