@@ -18,8 +18,8 @@ const filterSlice = createSlice({
         value: "Low",
       },
       {
-        label: "Meduim",
-        value: "Meduim",
+        label: "Medium",
+        value: "Medium",
       },
       {
         label: "High",
