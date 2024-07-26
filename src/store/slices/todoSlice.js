@@ -45,20 +45,47 @@ const todoSlice = createSlice({
       const todoData = createTodo(todoText, priority, category);
       state.allTodo.unshift(todoData);
     },
+
     removeTodo(state, action) {
       const removeTodoInd = action.payload;
       const newTodos = [];
 
       for (let i = 0; i < state.allTodo.length; ++i) {
-        if (i === removeTodoInd) { continue; }
+        if (i === removeTodoInd) {
+          continue;
+        }
         newTodos.push(state.allTodo[i]);
       }
 
       state.allTodo = newTodos;
     },
-    setTodoStatus(state, action) {
-      // TODO
+
+    toggleTodoStatus(state, action) {
+      const todoInd = action.payload;
+      const allTodos = state.allTodo;
+      allTodos[todoInd].statusIsDone = !allTodos[todoInd].statusIsDone;
+
+      const newTodos = [];
+
+      for (let i = 0; i < allTodos.length; ++i) {
+        if (i === todoInd) {
+          continue;
+        }
+
+        newTodos.push(allTodos[i]);
+      }
+
+      if (allTodos[todoInd].statusIsDone) {
+        // move to allTodo last elem
+        newTodos.push(allTodos[todoInd]);
+      } else {
+        // move to first elem
+        newTodos.unshift(allTodos[todoInd]);
+      }
+
+      state.allTodo = newTodos;
     },
+
     changeTodo(state, action) {
       // TODO
     },
@@ -66,9 +93,5 @@ const todoSlice = createSlice({
 });
 
 export default todoSlice.reducer;
-export const { 
-  addTodo, 
-  removeTodo, 
-  setTodoStatus, 
-  changeTodo 
-} = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodoStatus, changeTodo } =
+  todoSlice.actions;
