@@ -60,7 +60,7 @@ export default function EditTodoModal({
       >
         <Space direction="vertical" style={{ width: "100%" }}>
           <Input
-            placeholder="What you want to do ?"
+            placeholder="Change todo text."
             value={todoText}
             onChange={(e) => setTodoText(e.target.value)}
           />
