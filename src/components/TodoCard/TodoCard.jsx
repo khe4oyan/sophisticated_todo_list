@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { Typography, Dropdown } from "antd";
 
 // components
-import EditTodoModal from '../EditTodoModal';
+import EditTodoModal from "../EditTodoModal";
 
 // slices
 import { removeTodo, toggleTodoStatus } from "../../store/slices/todoSlice";
+import { useState } from "react";
 
 const { Title } = Typography;
 
@@ -83,6 +84,7 @@ const items = [
 
 export default function TodoCard({ todoData, ind }) {
   const dispatch = useDispatch();
+  const [isOpenedEditModal, setIsOpenedEditModal] = useState(false);
 
   const {
     // id,
@@ -95,27 +97,37 @@ export default function TodoCard({ todoData, ind }) {
   const onMenuClick = () => {
     dispatch(toggleTodoStatus(ind));
   };
-  
+
   const onMenuItemClick = (e) => {
     const key = +e.key;
-    switch(key) {
+    switch (key) {
       case 0:
-        break; 
+        // TODO: VIEW in Single Todo Page
+        break;
       case 1:
-        break; 
+        setIsOpenedEditModal(true);
+        break;
       case 2:
         dispatch(removeTodo(ind));
-        break; 
-      default: 
+        break;
+      default:
         console.error("Undefined menu item click");
     }
   };
 
-  const lowecasePriority = priority.toLowerCase();
+  const lowecasePriorityValue = priority.toLowerCase();
 
   return (
-    <Root className={statusIsDone || lowecasePriority}>
-      <Title level={3} style={statusIsDone && {textDecorationLine: "line-through", color: "gray"}}>{text}</Title>
+    <Root className={statusIsDone || lowecasePriorityValue}>
+      <Title
+        level={3}
+        style={
+          statusIsDone && { textDecorationLine: "line-through", color: "gray" }
+        }
+      >
+        {text}
+      </Title>
+      
       <Dropdown.Button
         menu={{
           items,
@@ -126,9 +138,19 @@ export default function TodoCard({ todoData, ind }) {
         {statusIsDone ? "Undone" : "Done"}
       </Dropdown.Button>
 
-      <Priority className={lowecasePriority}>{lowecasePriority}</Priority>
+      <Priority className={lowecasePriorityValue}>
+        {lowecasePriorityValue}
+      </Priority>
+      
       <Category>{category.toLowerCase()}</Category>
-      {/* <EditTodoModal ind={ind}/> */}
+
+      {isOpenedEditModal && (
+        <EditTodoModal
+          todoInd={ind}
+          isModalOpen={isOpenedEditModal}
+          setIsModalOpen={setIsOpenedEditModal}
+        />
+      )}
     </Root>
   );
 }

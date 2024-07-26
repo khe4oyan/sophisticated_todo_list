@@ -4,56 +4,57 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, Input, Select, Space } from "antd";
 
 // slices
-import { addTodo } from "../../store/slices/todoSlice";
+import { changeTodo } from "../../store/slices/todoSlice";
 
 // constants
 import PRIORITIES from "../../data/priority";
 
-export default function AddTodoModal() {
+export default function EditTodoModal({
+  todoInd,
+  isModalOpen,
+  setIsModalOpen,
+}) {
   const dispatch = useDispatch();
   const { categories } = useSelector((s) => s.categorySlice);
+  const {
+    text: editableTodoText,
+    priority: editableTodoPriority,
+    category: editableTodoCategory,
+  } = useSelector((s) => s.todoSlice.allTodo)[todoInd];
 
   // states
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [todoText, setTodoText] = useState("");
-  const [priority, setPriority] = useState(null);
-  const [category, setCategory] = useState(null);
-
+  const [todoText, setTodoText] = useState(editableTodoText);
+  const [priority, setPriority] = useState(editableTodoPriority);
+  const [category, setCategory] = useState(editableTodoCategory);
 
   // handlers
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
   const handleButtonAdd = () => {
-    dispatch(addTodo({todoText, priority, category}));
-    setTodoText("");
-    setPriority(null);
-    setCategory(null);
+    const newTodoData = [ todoText, priority, category ];
+    dispatch(changeTodo({ todoInd, newTodoData }));
     setIsModalOpen(false);
   };
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Add New Todo
-      </Button>
       <Modal
-        title="Add New Todo"
+        title="Edit Todo"
         open={isModalOpen}
         onCancel={handleCancel}
         footer={[
+          <Button key="cancel" onClick={handleCancel}>
+            Discard
+          </Button>,
           <Button
             disabled={!(todoText.trim() && priority && category)}
             key="submit"
             type="primary"
             onClick={handleButtonAdd}
           >
-            Add
+            Edit
           </Button>,
         ]}
       >

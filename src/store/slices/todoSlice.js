@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const createTodo = (text, priority, category) => {
   return {
     id: new Date().getTime(),
-    text,
     statusIsDone: false,
+    text,
     category,
     priority,
   };
@@ -50,6 +50,7 @@ const todoSlice = createSlice({
       const removeTodoInd = action.payload;
       const newTodos = [];
 
+      // filtering allTodos without toggling todo
       for (let i = 0; i < state.allTodo.length; ++i) {
         if (i === removeTodoInd) {
           continue;
@@ -61,12 +62,13 @@ const todoSlice = createSlice({
     },
 
     toggleTodoStatus(state, action) {
-      const todoInd = action.payload;
       const allTodos = state.allTodo;
+      const todoInd = action.payload;
+
       allTodos[todoInd].statusIsDone = !allTodos[todoInd].statusIsDone;
 
+      // filtering allTodos without toggling todo
       const newTodos = [];
-
       for (let i = 0; i < allTodos.length; ++i) {
         if (i === todoInd) {
           continue;
@@ -75,6 +77,7 @@ const todoSlice = createSlice({
         newTodos.push(allTodos[i]);
       }
 
+      // choose pushing or unshifting toggling todo
       if (allTodos[todoInd].statusIsDone) {
         // move to allTodo last elem
         newTodos.push(allTodos[todoInd]);
@@ -86,12 +89,18 @@ const todoSlice = createSlice({
       state.allTodo = newTodos;
     },
 
-    changeTodo(state, action) {
+    changeTodo(state, { payload }) {
+      const { todoInd, newTodoData } = payload;
+      state.allTodo[todoInd] = createTodo(...newTodoData);
+    },
+
+    dragTodo(state, { payload }) {
+      const { fromInd, toInd } = payload;
       // TODO
     },
   },
 });
 
 export default todoSlice.reducer;
-export const { addTodo, removeTodo, toggleTodoStatus, changeTodo } =
+export const { addTodo, removeTodo, toggleTodoStatus, changeTodo, dragTodo } =
   todoSlice.actions;
