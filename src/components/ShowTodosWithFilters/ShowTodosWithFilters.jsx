@@ -7,7 +7,7 @@ import TodoCard from "../TodoCard/TodoCard";
 export default function ShowTodosWithFilters({ selectedFilters, todos }) {
   let filteredTodos = [];
 
-  // todo list filtering
+  // list filtering
   if (selectedFilters.length === 0) {
     filteredTodos = todos;
   } else {
