@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Typography, Dropdown } from "antd";
 
+// components
+import EditTodoModal from '../EditTodoModal';
+
 // slices
-import { removeTodo } from "../../store/slices/todoSlice";
+import { removeTodo, toggleTodoStatus } from "../../store/slices/todoSlice";
 
 const { Title } = Typography;
 
@@ -90,7 +93,7 @@ export default function TodoCard({ todoData, ind }) {
   } = todoData;
 
   const onMenuClick = () => {
-    console.log("click");
+    dispatch(toggleTodoStatus(ind));
   };
   
   const onMenuItemClick = (e) => {
@@ -125,6 +128,7 @@ export default function TodoCard({ todoData, ind }) {
 
       <Priority className={lowecasePriority}>{lowecasePriority}</Priority>
       <Category>{category.toLowerCase()}</Category>
+      {/* <EditTodoModal ind={ind}/> */}
     </Root>
   );
 }
