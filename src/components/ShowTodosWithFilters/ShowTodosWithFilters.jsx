@@ -13,9 +13,9 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
   } else {
     for (let i = 0; i < todos.length; ++i) {
       const todo = todos[i];
-      const { statusIsDone, category, priority } = todo;
+      const { todoStatus, category, priority } = todo;
       if (
-        selectedFilters.includes(statusIsDone) ||
+        selectedFilters.includes(todoStatus) ||
         selectedFilters.includes(category) ||
         selectedFilters.includes(priority)
       ) {
