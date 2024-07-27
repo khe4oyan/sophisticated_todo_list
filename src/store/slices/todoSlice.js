@@ -1,7 +1,7 @@
 // libs
 import { createSlice } from "@reduxjs/toolkit";
 
-const createTodo = (text, priority, category) => {
+const createTodo = (text, priority, category, statusIsDone = false) => {
   return {
     id: new Date().getTime(),
     statusIsDone: false,
@@ -90,9 +90,13 @@ const todoSlice = createSlice({
       state.allTodo = newTodos;
     },
 
-    changeTodo(state, { payload }) {
+    editTodo(state, { payload }) {
       const { todoInd, newTodoData } = payload;
-      state.allTodo[todoInd] = createTodo(...newTodoData);
+      const changingTodo = state.allTodo[todoInd];
+
+      changingTodo.text = newTodoData[0];
+      changingTodo.priority = newTodoData[1];
+      changingTodo.category = newTodoData[2];
     },
 
     dragTodo(state, { payload }) {
@@ -103,5 +107,5 @@ const todoSlice = createSlice({
 });
 
 export default todoSlice.reducer;
-export const { addTodo, removeTodo, toggleTodoStatus, changeTodo, dragTodo } =
+export const { addTodo, removeTodo, toggleTodoStatus, editTodo, dragTodo } =
   todoSlice.actions;
