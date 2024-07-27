@@ -16,6 +16,7 @@ import {
   editTodoCategory,
   editTodoPriority,
 } from "../../store/slices/todoSlice";
+import { useState } from "react";
 
 const Root = styled.div`
   padding: 10px;
@@ -39,7 +40,7 @@ export default function SingleTodoPage() {
 
   const dispatch = useDispatch();
 
-  const todoData = allTodo[todoInd];
+  const [todoData] = useState(allTodo[todoInd]);
 
   // handlers
   const textChangeHandle = (changedText) => {
