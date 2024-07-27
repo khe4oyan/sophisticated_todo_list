@@ -6,13 +6,6 @@
 
 ## Stages
 
-### stage 2
-+ Add new todo
-+ Delete todo
-- Edit todo
-  - in single page
-  + in todo card
-
 ### stage 3
 - Add Drag and Drop
 + Add Filters

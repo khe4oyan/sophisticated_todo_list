@@ -109,7 +109,10 @@ const todoSlice = createSlice({
 
     dragTodo(state, { payload }) {
       const { fromInd, toInd } = payload;
-      // TODO
+
+      for (let i = fromInd; i < state.allTodo.length - 1; ++i) {
+        
+      }
     },
 
     editTodoText(state, { payload }) {
