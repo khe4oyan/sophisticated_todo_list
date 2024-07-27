@@ -1,10 +1,10 @@
 // libs
 import { createSlice } from "@reduxjs/toolkit";
 
-const createTodo = (text, priority, category, statusIsDone = false) => {
+const createTodo = (text, priority, category, todoStatus = false) => {
   return {
     id: new Date().getTime(),
-    statusIsDone: false,
+    todoStatus: false,
     text,
     category,
     priority,
@@ -27,21 +27,21 @@ const todoSlice = createSlice({
       {
         id: 0,
         text: "Check test task",
-        statusIsDone: false,
+        todoStatus: false,
         category: "Programming",
         priority: "High",
       },
       {
         id: 1,
         text: "Try to done this todo",
-        statusIsDone: false,
+        todoStatus: false,
         category: "Programming",
         priority: "Medium",
       },
       {
         id: 2,
         text: "Open test project",
-        statusIsDone: true,
+        todoStatus: true,
         category: "Programming",
         priority: "Low",
       },
@@ -74,7 +74,7 @@ const todoSlice = createSlice({
       const allTodos = state.allTodo;
       const todoInd = action.payload;
 
-      allTodos[todoInd].statusIsDone = !allTodos[todoInd].statusIsDone;
+      allTodos[todoInd].todoStatus = !allTodos[todoInd].todoStatus;
 
       // filtering allTodos without toggling todo
       const newTodos = [];
@@ -87,7 +87,7 @@ const todoSlice = createSlice({
       }
 
       // choose pushing or unshifting toggling todo
-      if (allTodos[todoInd].statusIsDone) {
+      if (allTodos[todoInd].todoStatus) {
         // move to allTodo last elem
         newTodos.push(allTodos[todoInd]);
       } else {
@@ -140,13 +140,6 @@ const todoSlice = createSlice({
       editTodoProp(state, payload, "text");
     },
 
-    editTodoStatus(state, { payload }) {
-      // const { todoInd, newValue } = payload;
-      // state.allTodo[todoInd].statusIsDone = newValue;
-
-      editTodoProp(state, payload, "statusIsDone");
-    },
-
     editTodoPriority(state, { payload }) {
       // const { todoInd, newValue } = payload;
       // state.allTodo[todoInd].priority = newValue;
@@ -171,7 +164,6 @@ export const {
   editTodo,
   dragTodo,
   editTodoText,
-  editTodoStatus,
   editTodoPriority,
   editTodoCategory,
 } = todoSlice.actions;

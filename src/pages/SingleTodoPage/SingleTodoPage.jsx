@@ -11,8 +11,8 @@ import STATUS_OPTIONS from "../../data/statusOptions";
 
 // slices
 import {
+  toggleTodoStatus,
   editTodoText,
-  editTodoStatus,
   editTodoCategory,
   editTodoPriority,
 } from "../../store/slices/todoSlice";
@@ -51,8 +51,9 @@ export default function SingleTodoPage() {
   };
 
   const statusChangeHandle = (changedStatus) => {
-    const newData = { todoInd, newValue: changedStatus };
-    dispatch(editTodoStatus(newData));
+    if (changedStatus !== todoData.todoStatus) {
+      dispatch(toggleTodoStatus(+todoInd));
+    }
   };
 
   const categoryChangeHandle = (changedCategory) => {
@@ -77,7 +78,7 @@ export default function SingleTodoPage() {
             <Space direction="vertical" style={{ gap: "0" }}>
               <Text>Status:</Text>
               <Select
-                defaultValue={todoData.statusIsDone}
+                defaultValue={todoData.todoStatus}
                 options={STATUS_OPTIONS}
                 style={{ width: "100%" }}
                 onChange={statusChangeHandle}
