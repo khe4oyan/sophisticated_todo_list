@@ -1,7 +1,7 @@
 // libs
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal, Input, Select, Space } from "antd";
+import { Button, Modal, Input, Select, Space, message } from "antd";
 
 // slices
 import { editTodo } from "../../store/slices/todoSlice";
@@ -36,6 +36,7 @@ export default function EditTodoModal({
     const newTodoData = [ todoText, priority, category ];
     dispatch(editTodo({ todoInd, newTodoData }));
     setIsModalOpen(false);
+    message.success("Task edited.");
   };
 
   return (

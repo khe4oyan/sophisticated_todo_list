@@ -1,15 +1,24 @@
 // libs
 import { createSlice } from "@reduxjs/toolkit";
 
-const initCategories = () => {
-  // default categories
-  const categories = [
-    { value: "Programming" },
-    { value: "Design" },
-    { value: "Other" },
-  ];
+// tools
+import ST from "../../tools/localStorage";
 
-  // TODO: add user custom categories in localStorage
+const initCategories = () => {
+  let categories = ST.get('categories');
+
+  // if first visit then set default categories
+  if (!categories) {
+    const defaultCategories = [
+      { value: "Programming" },
+      { value: "Design" },
+      { value: "Life" },
+      { value: "Other" },
+    ];
+
+    categories = defaultCategories;
+    ST.set("categories", defaultCategories);
+  }
 
   return categories;
 };

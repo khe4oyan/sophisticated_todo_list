@@ -50,7 +50,7 @@ export default function AddCustomCategory() {
   const handleDeleteCategory = (ind) => {
     if (categories.length > 1) {
       dispatch(deleteCategory(ind));
-      message.success("Category deleted!");
+      message.success("Category is deleted!");
     } else {
       message.error("There must be at least 1 category");
     }

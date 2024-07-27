@@ -1,7 +1,7 @@
 // libs
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Modal, Input, Select, Space } from "antd";
+import { Button, Modal, Input, Select, Space, message } from "antd";
 
 // slices
 import { addTodo } from "../../store/slices/todoSlice";
@@ -19,7 +19,6 @@ export default function AddTodoModal() {
   const [priority, setPriority] = useState(null);
   const [category, setCategory] = useState(null);
 
-
   // handlers
   const showModal = () => {
     setIsModalOpen(true);
@@ -35,6 +34,7 @@ export default function AddTodoModal() {
     setPriority(null);
     setCategory(null);
     setIsModalOpen(false);
+    message.success("New task added.");
   };
 
   return (

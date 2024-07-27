@@ -5,7 +5,46 @@ import { createSlice } from "@reduxjs/toolkit";
 import ST from "../../tools/localStorage";
 
 const initTodos = () => {
-  const todos = ST.get('todos') || [];
+  let todos = ST.get('todos');
+
+  // if first visit then set default todos
+  if (!todos) {
+    const defaultTodos = [
+      {
+        id: 0,
+        text: "Check test task",
+        todoStatus: false,
+        category: "Programming",
+        priority: "High",
+      },
+      {
+        id: 1,
+        text: "Choose the hard way",
+        todoStatus: false,
+        category: "Life",
+        priority: "High",
+      },
+      {
+        id: 2,
+        text: "Try to done this todo",
+        todoStatus: false,
+        category: "Programming",
+        priority: "Low",
+      },
+      {
+        id: 3,
+        text: "Open test project",
+        todoStatus: true,
+        category: "Programming",
+        priority: "Low",
+      },
+    ];
+    
+    todos = defaultTodos;
+    ST.set("todos", defaultTodos);
+  }
+  
+  console.log(todos);
   return todos;
 }; 
 

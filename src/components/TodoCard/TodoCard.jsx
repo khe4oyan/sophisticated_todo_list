@@ -1,7 +1,7 @@
 // libs
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { Typography, Dropdown } from "antd";
+import { Typography, Dropdown, message } from "antd";
 import { useNavigate } from "react-router-dom";
 
 // components
@@ -101,6 +101,7 @@ export default function TodoCard({ todoData, ind }) {
 
   const onMenuClick = () => {
     dispatch(toggleTodoStatus(ind));
+    message.success("Task status checked");
   };
 
   const onMenuItemClick = (e) => {
@@ -114,6 +115,7 @@ export default function TodoCard({ todoData, ind }) {
         break;
       case 2:
         dispatch(removeTodo(ind));
+        message.success("Task was deleted.");
         break;
       default:
         console.error("Undefined menu item click");

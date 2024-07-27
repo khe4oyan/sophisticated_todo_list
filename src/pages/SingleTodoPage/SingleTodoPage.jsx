@@ -1,9 +1,10 @@
 // libs
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Typography from "antd/es/typography/Typography";
-import { Select, Space } from "antd";
+import { Select, Space, message } from "antd";
 
 // constant data
 import PRIORITY_OPTIONS from "../../data/priorityOptions";
@@ -16,12 +17,11 @@ import {
   editTodoCategory,
   editTodoPriority,
 } from "../../store/slices/todoSlice";
-import { useState } from "react";
 
 const Root = styled.div`
   padding: 10px;
   width: fit-content;
-  width: 250px;
+  width: 400px;
   margin: auto;
 `;
 
@@ -42,6 +42,8 @@ export default function SingleTodoPage() {
 
   const [todoData, setTodoData] = useState(allTodo[todoInd]);
 
+  !todoData && message.error("Invalid param");
+
   // handlers
   const textChangeHandle = (changedText) => {
     const formatedText = changedText.trim();
@@ -49,23 +51,29 @@ export default function SingleTodoPage() {
       const newData = { todoInd, newValue: changedText };
       setTodoData(prev => ({...prev, text: formatedText}));
       dispatch(editTodoText(newData));
+      message.success("Task title changed");
+    } else {
+      message.error("Enter task title");
     }
   };
 
   const statusChangeHandle = (changedStatus) => {
     if (changedStatus !== todoData.todoStatus) {
       dispatch(toggleTodoStatus(+todoInd));
+      message.success("Task status changed");
     }
   };
 
   const categoryChangeHandle = (changedCategory) => {
     const newData = { todoInd, newValue: changedCategory };
     dispatch(editTodoCategory(newData));
+    message.success("Task category changed");
   };
 
   const priorityChangeHandle = (changedPriority) => {
     const newData = { todoInd, newValue: changedPriority };
     dispatch(editTodoPriority(newData));
+    message.success("Task priority changed");
   };
 
   return (
