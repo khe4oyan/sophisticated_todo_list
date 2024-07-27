@@ -7,7 +7,7 @@ import { Button, Modal, Input, Select, Space } from "antd";
 import { changeTodo } from "../../store/slices/todoSlice";
 
 // constants
-import PRIORITIES from "../../data/priority";
+import PRIORITY_OPTIONS from "../../data/priorityOptions";
 
 export default function EditTodoModal({
   todoInd,
@@ -68,7 +68,7 @@ export default function EditTodoModal({
           <Select
             placeholder="Priority"
             value={priority}
-            options={PRIORITIES}
+            options={PRIORITY_OPTIONS}
             onSelect={setPriority}
             style={{ width: "100%" }}
           />

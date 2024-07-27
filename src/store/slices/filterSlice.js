@@ -2,22 +2,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // constants
-import PRIORITIES from "../../data/priority";
+import PRIORITY_OPTIONS from "../../data/priorityOptions";
+import STATUS_OPTIONS from "../../data/statusOptions";
 
 const filterSlice = createSlice({
   name: "filterSlice",
 
   initialState: {
     filters: [
-      {
-        label: "Done",
-        value: true,
-      },
-      {
-        label: "Undone",
-        value: false,
-      },
-      ...PRIORITIES,
+      ...STATUS_OPTIONS,
+      ...PRIORITY_OPTIONS,
     ],
   },
 

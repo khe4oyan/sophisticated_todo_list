@@ -6,7 +6,8 @@ import Typography from "antd/es/typography/Typography";
 import { Select, Space } from "antd";
 
 // constant data
-import PRIORITIES from "../../data/priority";
+import PRIORITY_OPTIONS from "../../data/priorityOptions";
+import STATUS_OPTIONS from "../../data/statusOptions";
 
 const Root = styled.div`
   padding: 10px;
@@ -28,17 +29,6 @@ export default function SingleTodoPage() {
 
   const todoData = allTodo[todoInd];
 
-  const statusOptions = [
-    {
-      label: "Done",
-      value: true,
-    },
-    {
-      label: "Undone",
-      value: false,
-    },
-  ];
-
   return (
     <Root>
       {todoData ? (
@@ -51,7 +41,7 @@ export default function SingleTodoPage() {
             Status:
             <Select
               defaultValue={todoData.statusIsDone}
-              options={statusOptions}
+              options={STATUS_OPTIONS}
               style={{ width: "100%" }}
             />
 
@@ -65,7 +55,7 @@ export default function SingleTodoPage() {
             Priority:
             <Select
               defaultValue={todoData.priority}
-              options={PRIORITIES}
+              options={PRIORITY_OPTIONS}
               style={{ width: "100%" }}
             />
           </Space>

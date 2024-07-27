@@ -15,10 +15,12 @@ function App() {
     <div>
       <Routes>
         <Route path={ROUTES.NOT_FOUND_PAGE} element={<NotFoundPage />}/>
+
         <Route path={ROUTES.HOME_PAGE} element={<HomePage />}>
           <Route path={ROUTES.TODOS_PAGE} element={<TodosPage />}/>
-          <Route path={ROUTES.SINGLE_TODO_PAGE_BY_ID} element={<SingleTodoPage />}/>
+          <Route path={`${ROUTES.SINGLE_TODO_PAGE_BY_IND}/:todoInd`} element={<SingleTodoPage />}/>
         </Route>
+        
       </Routes>
     </div>
   );

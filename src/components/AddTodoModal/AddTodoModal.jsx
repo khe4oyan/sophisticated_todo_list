@@ -7,7 +7,7 @@ import { Button, Modal, Input, Select, Space } from "antd";
 import { addTodo } from "../../store/slices/todoSlice";
 
 // constants
-import PRIORITIES from "../../data/priority";
+import PRIORITY_OPTIONS from "../../data/priorityOptions";
 
 export default function AddTodoModal() {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export default function AddTodoModal() {
           <Select
             placeholder="Priority"
             value={priority}
-            options={PRIORITIES}
+            options={PRIORITY_OPTIONS}
             onSelect={setPriority}
             style={{ width: "100%" }}
           />

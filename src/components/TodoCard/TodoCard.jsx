@@ -2,6 +2,7 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Typography, Dropdown } from "antd";
+import { useNavigate } from "react-router-dom";
 
 // components
 import EditTodoModal from "../EditTodoModal";
@@ -9,6 +10,9 @@ import EditTodoModal from "../EditTodoModal";
 // slices
 import { removeTodo, toggleTodoStatus } from "../../store/slices/todoSlice";
 import { useState } from "react";
+
+// routes
+import ROUTES from "../../routes/routes";
 
 const { Title } = Typography;
 
@@ -85,6 +89,7 @@ const items = [
 export default function TodoCard({ todoData, ind }) {
   const dispatch = useDispatch();
   const [isOpenedEditModal, setIsOpenedEditModal] = useState(false);
+  const navigate = useNavigate();
 
   const {
     // id,
@@ -102,7 +107,7 @@ export default function TodoCard({ todoData, ind }) {
     const key = +e.key;
     switch (key) {
       case 0:
-        // TODO: VIEW in Single Todo Page
+        navigate(`${ROUTES.SINGLE_TODO_PAGE_BY_IND}/${ind}`);
         break;
       case 1:
         setIsOpenedEditModal(true);

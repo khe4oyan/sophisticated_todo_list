@@ -28,7 +28,7 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
     <Flex wrap vertical style={{ margin: "10px 0" }} gap="10px">
       {
         filteredTodos.length < 1 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty description="Add your first todo!" image={Empty.PRESENTED_IMAGE_SIMPLE} />
         ) : (
           filteredTodos.map((todo, i) => (
             <TodoCard key={i} todoData={todo} ind={i} />
