@@ -1,4 +1,7 @@
+// libs
 import { createSlice } from "@reduxjs/toolkit";
+
+// constants
 import PRIORITIES from "../../data/priority";
 
 const filterSlice = createSlice({

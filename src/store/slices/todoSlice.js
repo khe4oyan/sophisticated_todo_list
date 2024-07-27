@@ -1,3 +1,4 @@
+// libs
 import { createSlice } from "@reduxjs/toolkit";
 
 const createTodo = (text, priority, category) => {
