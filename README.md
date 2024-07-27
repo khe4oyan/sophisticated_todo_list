@@ -13,8 +13,5 @@
 ### stage 3.75
 - Add responsive buttons to page bottom for mobile version
 
-### stage 4
-- localStorage
-
 ### stage 5
 - responsive for all devices
