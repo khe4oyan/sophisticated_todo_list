@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Modal, Input, Select, Space } from "antd";
 
 // slices
-import { changeTodo } from "../../store/slices/todoSlice";
+import { editTodo } from "../../store/slices/todoSlice";
 
 // constants
 import PRIORITY_OPTIONS from "../../data/priorityOptions";
@@ -34,7 +34,7 @@ export default function EditTodoModal({
 
   const handleButtonAdd = () => {
     const newTodoData = [ todoText, priority, category ];
-    dispatch(changeTodo({ todoInd, newTodoData }));
+    dispatch(editTodo({ todoInd, newTodoData }));
     setIsModalOpen(false);
   };
 

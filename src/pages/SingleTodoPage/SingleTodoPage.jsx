@@ -1,6 +1,6 @@
 // libs
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Typography from "antd/es/typography/Typography";
 import { Select, Space } from "antd";
@@ -8,6 +8,14 @@ import { Select, Space } from "antd";
 // constant data
 import PRIORITY_OPTIONS from "../../data/priorityOptions";
 import STATUS_OPTIONS from "../../data/statusOptions";
+
+// slices
+import {
+  editTodoText,
+  editTodoStatus,
+  editTodoCategory,
+  editTodoPriority,
+} from "../../store/slices/todoSlice";
 
 const Root = styled.div`
   padding: 10px;
@@ -19,6 +27,7 @@ const TodoCard = styled.div`
   padding: 10px;
   border: 1px solid #0003;
   border-radius: 5px;
+  min-width: 250px;
 `;
 
 export default function SingleTodoPage() {
@@ -27,23 +36,32 @@ export default function SingleTodoPage() {
   const { Title, Text } = Typography;
   const { categories } = useSelector((s) => s.categorySlice);
 
+  const dispatch = useDispatch();
+
   const todoData = allTodo[todoInd];
 
   // handlers
   const textChangeHandle = (changedText) => {
-    console.log(changedText);
+    const formatedText = changedText.trim();
+    if (formatedText) {
+      const newData = { todoInd, newValue: changedText };
+      dispatch(editTodoText(newData));
+    }
   };
 
   const statusChangeHandle = (changedStatus) => {
-    console.log(changedStatus);
+    const newData = { todoInd, newValue: changedStatus };
+    dispatch(editTodoStatus(newData));
   };
 
   const categoryChangeHandle = (changedCategory) => {
-    console.log(changedCategory);
+    const newData = { todoInd, newValue: changedCategory };
+    dispatch(editTodoCategory(newData));
   };
 
   const priorityChangeHandle = (changedPriority) => {
-    console.log(changedPriority);
+    const newData = { todoInd, newValue: changedPriority };
+    dispatch(editTodoPriority(newData));
   };
 
   return (
@@ -55,7 +73,7 @@ export default function SingleTodoPage() {
           </Title>
 
           <Space direction="vertical" style={{ width: "100%" }}>
-            <Space direction="vertical" style={{gap: "0"}}>
+            <Space direction="vertical" style={{ gap: "0" }}>
               <Text>Status:</Text>
               <Select
                 defaultValue={todoData.statusIsDone}
@@ -65,7 +83,7 @@ export default function SingleTodoPage() {
               />
             </Space>
 
-            <Space direction="vertical" style={{gap: "0"}}>
+            <Space direction="vertical" style={{ gap: "0" }}>
               <Text>Category:</Text>
               <Select
                 defaultValue={todoData.category}
@@ -75,7 +93,7 @@ export default function SingleTodoPage() {
               />
             </Space>
 
-            <Space direction="vertical" style={{gap: "0"}}>
+            <Space direction="vertical" style={{ gap: "0" }}>
               <Text>Priority:</Text>
               <Select
                 defaultValue={todoData.priority}
