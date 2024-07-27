@@ -109,9 +109,25 @@ const todoSlice = createSlice({
 
     dragTodo(state, { payload }) {
       const { fromInd, toInd } = payload;
+      const allTodo = state.allTodo;
 
-      for (let i = fromInd; i < state.allTodo.length - 1; ++i) {
-        
+      // check array item move side
+      if (fromInd < toInd) {
+        // array item move side is right
+        for (let i = fromInd; i < allTodo.length - 1; ++i) {
+          if (i === toInd) { break; }
+          const tmp = allTodo[i];
+          allTodo[i] = allTodo[i + 1] ;
+          allTodo[i + 1] = tmp;
+        }
+      } else {
+        // array item move side is left
+        for (let i = fromInd; i > 0; --i) {
+          if (i === toInd) { break; }
+          const tmp = allTodo[i];
+          allTodo[i] = allTodo[i - 1] ;
+          allTodo[i - 1] = tmp;
+        }
       }
     },
 
