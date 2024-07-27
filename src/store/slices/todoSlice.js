@@ -11,6 +11,14 @@ const createTodo = (text, priority, category, statusIsDone = false) => {
   };
 };
 
+const editTodoProp = (state, payload, propName) => {
+  const { todoInd, newValue } = payload;
+  const todo = state.allTodo[todoInd]
+  if (todo.hasOwnProperty(propName)) {
+    todo[propName] = newValue;
+  }
+};
+
 const todoSlice = createSlice({
   name: "todoSlice",
 
@@ -103,9 +111,48 @@ const todoSlice = createSlice({
       const { fromInd, toInd } = payload;
       // TODO
     },
+
+    editTodoText(state, { payload }) {
+      // variant 1 - repeat under code in under actions
+      // const { todoInd, newValue } = payload;
+      // state.allTodo[todoInd].text = newValue;
+
+      // variant 2 - repeat code moved in to this function
+      editTodoProp(state, payload, "text");
+    },
+
+    editTodoStatus(state, { payload }) {
+      // const { todoInd, newValue } = payload;
+      // state.allTodo[todoInd].statusIsDone = newValue;
+
+      editTodoProp(state, payload, "statusIsDone");
+    },
+
+    editTodoPriority(state, { payload }) {
+      // const { todoInd, newValue } = payload;
+      // state.allTodo[todoInd].priority = newValue;
+
+      editTodoProp(state, payload, "priority");
+    },
+
+    editTodoCategory(state, { payload }) {
+      // const { todoInd, newValue } = payload;
+      // state.allTodo[todoInd].category = newValue;
+
+      editTodoProp(state, payload, "category");
+    },
   },
 });
 
 export default todoSlice.reducer;
-export const { addTodo, removeTodo, toggleTodoStatus, editTodo, dragTodo } =
-  todoSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  toggleTodoStatus,
+  editTodo,
+  dragTodo,
+  editTodoText,
+  editTodoStatus,
+  editTodoPriority,
+  editTodoCategory,
+} = todoSlice.actions;
