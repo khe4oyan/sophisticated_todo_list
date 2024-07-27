@@ -1,7 +1,15 @@
 // libs
 import { createSlice } from "@reduxjs/toolkit";
 
-const createTodo = (text, priority, category, todoStatus = false) => {
+// tools
+import ST from "../../tools/localStorage";
+
+const initTodos = () => {
+  const todos = ST.get('todos') || [];
+  return todos;
+}; 
+
+const createTodo = (text, priority, category) => {
   return {
     id: new Date().getTime(),
     todoStatus: false,
@@ -23,29 +31,7 @@ const todoSlice = createSlice({
   name: "todoSlice",
 
   initialState: {
-    allTodo: [
-      {
-        id: 0,
-        text: "Check test task",
-        todoStatus: false,
-        category: "Programming",
-        priority: "High",
-      },
-      {
-        id: 1,
-        text: "Try to done this todo",
-        todoStatus: false,
-        category: "Programming",
-        priority: "Medium",
-      },
-      {
-        id: 2,
-        text: "Open test project",
-        todoStatus: true,
-        category: "Programming",
-        priority: "Low",
-      },
-    ],
+    allTodo: initTodos(),
   },
 
   reducers: {
@@ -53,6 +39,7 @@ const todoSlice = createSlice({
       const { todoText, priority, category } = action.payload;
       const todoData = createTodo(todoText, priority, category);
       state.allTodo.unshift(todoData);
+      ST.set('todos', state.allTodo);
     },
 
     removeTodo(state, action) {
@@ -64,10 +51,12 @@ const todoSlice = createSlice({
         if (i === removeTodoInd) {
           continue;
         }
+
         newTodos.push(state.allTodo[i]);
       }
 
       state.allTodo = newTodos;
+      ST.set('todos', state.allTodo);
     },
 
     toggleTodoStatus(state, action) {
@@ -96,6 +85,7 @@ const todoSlice = createSlice({
       }
 
       state.allTodo = newTodos;
+      ST.set('todos', state.allTodo);
     },
 
     editTodo(state, { payload }) {
@@ -105,6 +95,7 @@ const todoSlice = createSlice({
       changingTodo.text = newTodoData[0];
       changingTodo.priority = newTodoData[1];
       changingTodo.category = newTodoData[2];
+      ST.set('todos', state.allTodo);
     },
 
     dragTodo(state, { payload }) {
@@ -129,6 +120,7 @@ const todoSlice = createSlice({
           allTodo[i - 1] = tmp;
         }
       }
+      ST.set('todos', state.allTodo);
     },
 
     editTodoText(state, { payload }) {
@@ -138,6 +130,7 @@ const todoSlice = createSlice({
 
       // variant 2 - repeat code moved in to this function
       editTodoProp(state, payload, "text");
+      ST.set('todos', state.allTodo);
     },
 
     editTodoPriority(state, { payload }) {
@@ -145,6 +138,7 @@ const todoSlice = createSlice({
       // state.allTodo[todoInd].priority = newValue;
 
       editTodoProp(state, payload, "priority");
+      ST.set('todos', state.allTodo);
     },
 
     editTodoCategory(state, { payload }) {
@@ -152,6 +146,7 @@ const todoSlice = createSlice({
       // state.allTodo[todoInd].category = newValue;
 
       editTodoProp(state, payload, "category");
+      ST.set('todos', state.allTodo);
     },
   },
 });
