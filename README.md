@@ -8,7 +8,6 @@
 
 ### stage 3
 - Add Drag and Drop
-+ Add Filters
 
 ### stage 3.75
 - Add responsive buttons to page bottom for mobile version
