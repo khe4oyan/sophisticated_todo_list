@@ -7,6 +7,7 @@ import styled from "styled-components";
 // components
 import ShowTodosWithFilters from '../../components/ShowTodosWithFilters';
 import AddTodoModal from "../../components/AddTodoModal/AddTodoModal";
+import AddCustomCategory from "../../components/AddCustomCategory/AddCustomCategory";
 
 const Root = styled.div`
   padding: 10px;
@@ -44,6 +45,7 @@ export default function TodoPage() {
           options={[...filters, ...categories]}
         />
         <AddTodoModal />
+        <AddCustomCategory />
       </Space>
       <ShowTodosWithFilters 
         selectedFilters={selectedFilters}

@@ -23,10 +23,18 @@ const categorySlice = createSlice({
 
   reducers: {
     addNewCategory(state, action) {
-      // TODO
+      state.categories.push({ value: action.payload });
     },
+
     deleteCategory(state, action) {
-      // TODO
+      const newCategories = [];
+
+      for (let i = 0; i < state.categories.length; ++i) {
+        if (i === action.payload) { continue; }
+        newCategories.push(state.categories[i]);
+      }
+
+      state.categories = newCategories;
     },
   },
 });

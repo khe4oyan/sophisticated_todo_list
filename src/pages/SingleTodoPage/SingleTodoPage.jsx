@@ -40,13 +40,14 @@ export default function SingleTodoPage() {
 
   const dispatch = useDispatch();
 
-  const [todoData] = useState(allTodo[todoInd]);
+  const [todoData, setTodoData] = useState(allTodo[todoInd]);
 
   // handlers
   const textChangeHandle = (changedText) => {
     const formatedText = changedText.trim();
     if (formatedText) {
       const newData = { todoInd, newValue: changedText };
+      setTodoData(prev => ({...prev, text: formatedText}));
       dispatch(editTodoText(newData));
     }
   };

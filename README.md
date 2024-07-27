@@ -10,8 +10,8 @@
 - Add Drag and Drop
 + Add Filters
 
-### stage 3.5
-- Add custom categories adding
+### stage 3.75
+- Add responsive buttons to page bottom for mobile version
 
 ### stage 4
 - localStorage
