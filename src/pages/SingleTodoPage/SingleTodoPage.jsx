@@ -20,6 +20,7 @@ import {
 const Root = styled.div`
   padding: 10px;
   width: fit-content;
+  width: 250px;
   margin: auto;
 `;
 
@@ -27,7 +28,7 @@ const TodoCard = styled.div`
   padding: 10px;
   border: 1px solid #0003;
   border-radius: 5px;
-  min-width: 250px;
+  width: 100%;
 `;
 
 export default function SingleTodoPage() {

@@ -16,6 +16,5 @@
 ### stage 4
 - localStorage
 
-
 ### stage 5
 - responsive for all devices
