@@ -25,7 +25,7 @@ const todoSlice = createSlice({
       },
       {
         id: 1,
-        text: "Try to add new todo",
+        text: "Try to done this todo",
         statusIsDone: false,
         category: "Programming",
         priority: "Medium",

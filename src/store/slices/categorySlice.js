@@ -9,7 +9,7 @@ const initCategories = () => {
     { value: "Other" },
   ];
 
-  // TODO: add user custom categories
+  // TODO: add user custom categories in localStorage
 
   return categories;
 };

@@ -1,4 +1,4 @@
-class ST {
+class ST { // ST - Storage
   constructor() {throw new Error('Cant create instance of ST');}
 
   static set(key, value) {
