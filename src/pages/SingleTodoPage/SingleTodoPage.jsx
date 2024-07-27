@@ -24,40 +24,66 @@ const TodoCard = styled.div`
 export default function SingleTodoPage() {
   const { todoInd } = useParams();
   const { allTodo } = useSelector((s) => s.todoSlice);
-  const { Title } = Typography;
+  const { Title, Text } = Typography;
   const { categories } = useSelector((s) => s.categorySlice);
 
   const todoData = allTodo[todoInd];
+
+  // handlers
+  const textChangeHandle = (changedText) => {
+    console.log(changedText)
+  };
+
+  const statusChangeHandle = (changedStatus) => {
+    console.log(changedStatus)
+  };
+
+  const categoryChangeHandle = (changedCategory) => {
+    console.log(changedCategory)
+  };
+
+  const priorityChangeHandle = (changedPriority) => {
+    console.log(changedPriority)
+  };
 
   return (
     <Root>
       {todoData ? (
         <TodoCard>
-          <Title editable level={3}>
+          <Title editable={{ onChange: textChangeHandle }} level={3}>
             {todoData.text}
           </Title>
 
-          <Space direction="vertical" style={{width: "100%"}}>
-            Status:
-            <Select
-              defaultValue={todoData.statusIsDone}
-              options={STATUS_OPTIONS}
-              style={{ width: "100%" }}
-            />
+          <Space direction="vertical" style={{ width: "100%" }}>
+            <Space direction="vertical" style={{gap: "0"}}>
+              <Text>Status:</Text>
+              <Select
+                defaultValue={todoData.statusIsDone}
+                options={STATUS_OPTIONS}
+                style={{ width: "100%" }}
+                onChange={statusChangeHandle}
+              />
+            </Space>
 
-            Category:
-            <Select
-              defaultValue={todoData.category}
-              options={categories}
-              style={{ width: "100%" }}
-            />
+            <Space direction="vertical" style={{gap: "0"}}>
+              <Text>Category:</Text>
+              <Select
+                defaultValue={todoData.category}
+                options={categories}
+                style={{ width: "100%" }}
+                onChange={categoryChangeHandle}
+              />
+            </Space>
 
-            Priority:
-            <Select
-              defaultValue={todoData.priority}
-              options={PRIORITY_OPTIONS}
-              style={{ width: "100%" }}
-            />
+            <Space direction="vertical" style={{gap: "0"}}>
+              <Text>Priority:</Text>
+              <Select
+                defaultValue={todoData.priority}
+                options={PRIORITY_OPTIONS}
+                style={{ width: "100%" }}
+                onChange={priorityChangeHandle}
+              />
+            </Space>
           </Space>
         </TodoCard>
       ) : (
