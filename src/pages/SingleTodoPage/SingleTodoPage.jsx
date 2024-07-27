@@ -31,19 +31,19 @@ export default function SingleTodoPage() {
 
   // handlers
   const textChangeHandle = (changedText) => {
-    console.log(changedText)
+    console.log(changedText);
   };
 
   const statusChangeHandle = (changedStatus) => {
-    console.log(changedStatus)
+    console.log(changedStatus);
   };
 
   const categoryChangeHandle = (changedCategory) => {
-    console.log(changedCategory)
+    console.log(changedCategory);
   };
 
   const priorityChangeHandle = (changedPriority) => {
-    console.log(changedPriority)
+    console.log(changedPriority);
   };
 
   return (
