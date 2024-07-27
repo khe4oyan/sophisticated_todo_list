@@ -76,7 +76,7 @@ export default function SingleTodoPage() {
           </Title>
 
           <Space direction="vertical" style={{ width: "100%" }}>
-            <Space direction="vertical" style={{ gap: "0" }}>
+            <Space direction="vertical" style={{ gap: "0", width: "100%" }}>
               <Text>Status:</Text>
               <Select
                 defaultValue={todoData.todoStatus}
@@ -86,7 +86,7 @@ export default function SingleTodoPage() {
               />
             </Space>
 
-            <Space direction="vertical" style={{ gap: "0" }}>
+            <Space direction="vertical" style={{ gap: "0", width: "100%" }}>
               <Text>Category:</Text>
               <Select
                 defaultValue={todoData.category}
@@ -96,7 +96,7 @@ export default function SingleTodoPage() {
               />
             </Space>
 
-            <Space direction="vertical" style={{ gap: "0" }}>
+            <Space direction="vertical" style={{ gap: "0", width: "100%" }}>
               <Text>Priority:</Text>
               <Select
                 defaultValue={todoData.priority}
