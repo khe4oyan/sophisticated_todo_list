@@ -21,9 +21,8 @@ const Root = styled.div`
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 10px;
-  max-width: 300px;
   position: relative;
-  overflow: hidden;
+
   --color: #c0c0c0;
   background: linear-gradient(150deg, #0000 30%, var(--color) 70%, #0006);
 
@@ -35,6 +34,11 @@ const Root = styled.div`
   }
   &.low {
     --color: #c8eec8;
+  }
+
+
+  @media (width < 500px) {
+    min-width: initial;
   }
 `;
 

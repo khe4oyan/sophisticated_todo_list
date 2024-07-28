@@ -21,7 +21,8 @@ import {
 const Root = styled.div`
   padding: 10px;
   width: fit-content;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   margin: auto;
 `;
 
