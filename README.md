@@ -1,7 +1,11 @@
 # Sophisticated Todo List
 
+## Demo
+[Link](https://khe4oyan.github.io/sophisticated_todo_list/)
+
+
 ## Setup
-[Download](https://nodejs.org/) Node js (required)
+[Download](https://nodejs.org/) Node js 
 
 ## How to run project ?
 ### Paste this code in to your terminal 
