@@ -31,7 +31,6 @@ const Buttons = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
-
   
   @media (width < 500px) {
     position: fixed;
@@ -46,7 +45,6 @@ const Buttons = styled.div`
     flex-wrap: wrap;
   }
 
-  
   @media (width < 290px) {
     grid-template-columns: 1fr;
   }
