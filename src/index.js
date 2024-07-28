@@ -35,6 +35,24 @@ const GlobalStyles = createGlobalStyle`
       width: 100%;
     }
   }
+
+  ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #719FD0;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6188B2;
+  }
 `;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
