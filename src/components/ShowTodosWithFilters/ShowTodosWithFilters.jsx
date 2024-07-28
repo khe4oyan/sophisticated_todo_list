@@ -1,8 +1,17 @@
 // libs
+import { useState } from "react";
 import { Flex, Empty } from "antd";
+import styled from "styled-components";
+import DragingHere from "../DragingHere/DragingHere";
 
 // components
 import TodoCard from "../TodoCard/TodoCard";
+
+const Drag = styled.div`
+  &.dragging {
+    opacity: 0.3;
+  }
+`;
 
 export default function ShowTodosWithFilters({ selectedFilters, todos }) {
   let filteredTodos = [];
@@ -24,6 +33,32 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
     }
   }
 
+  const [dragFromInd, setDragFromInd] = useState(-1);
+  const [dragToInd, setDragToInd] = useState(-1);
+
+  // handlers
+  const handlerOnDragStart = (e, i) => {
+    setDragFromInd(i);
+  };
+
+  const handlerOnDragEnd = (i) => {
+    console.log("end", i, dragFromInd, dragToInd);
+    if (dragToInd !== -1 && dragFromInd !== -1) {
+      // dispatch from to
+
+      setDragToInd(-1);
+    }
+
+    setDragFromInd(-1);
+  };
+
+  const handlerOnDragEnter = (e, i) => {
+    e.preventDefault();
+    if (i !== dragFromInd && i - 1 !== dragFromInd) {
+      setDragToInd(i);
+    }
+  };
+
   return (
     <Flex wrap vertical style={{ margin: "10px 0" }} gap="10px">
       {filteredTodos.length < 1 ? (
@@ -33,7 +68,17 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
         />
       ) : (
         filteredTodos.map((todo, i) => (
-          <TodoCard key={i} todoData={todo} ind={i} />
+          <Drag
+            key={i}
+            draggable
+            onDragStart={(e) => handlerOnDragStart(e, i)}
+            onDragEnd={() => handlerOnDragEnd(i)}
+            onDragEnter={(e) => handlerOnDragEnter(e, i)}
+            className={i === dragFromInd && "dragging"}
+          >
+            {i === dragToInd && <DragingHere />}
+            <TodoCard todoData={todo} ind={i} />
+          </Drag>
         ))
       )}
     </Flex>
