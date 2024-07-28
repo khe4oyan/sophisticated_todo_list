@@ -1,11 +1,15 @@
 // libs
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Flex, Empty } from "antd";
 import styled from "styled-components";
 import DragingHere from "../DragingHere/DragingHere";
 
 // components
 import TodoCard from "../TodoCard/TodoCard";
+
+// slices
+import { dragTodo } from "../../store/slices/todoSlice";
 
 const Drag = styled.div`
   &.dragging {
@@ -14,6 +18,7 @@ const Drag = styled.div`
 `;
 
 export default function ShowTodosWithFilters({ selectedFilters, todos }) {
+  const dispatch = useDispatch();
   let filteredTodos = [];
 
   // list filtering
@@ -45,7 +50,7 @@ export default function ShowTodosWithFilters({ selectedFilters, todos }) {
     console.log("end", i, dragFromInd, dragToInd);
     if (dragToInd !== -1 && dragFromInd !== -1) {
       // dispatch from to
-
+      dispatch(dragTodo({ fromInd: dragFromInd, toInd: dragToInd }));
       setDragToInd(-1);
     }
 
