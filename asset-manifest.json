@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/sophisticated_todo_list/static/js/main.b45c23cc.js",
+    "index.html": "/sophisticated_todo_list/index.html",
+    "main.b45c23cc.js.map": "/sophisticated_todo_list/static/js/main.b45c23cc.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b45c23cc.js"
+  ]
+}
