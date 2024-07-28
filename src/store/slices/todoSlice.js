@@ -44,7 +44,6 @@ const initTodos = () => {
     ST.set("todos", defaultTodos);
   }
   
-  console.log(todos);
   return todos;
 }; 
 
